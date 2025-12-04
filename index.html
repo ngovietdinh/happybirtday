@@ -943,10 +943,34 @@
 
         // Make A Wish
         function makeAWish() {
-            alert(WISHES[wishIndex]);
+            showWishMessage(WISHES[wishIndex]);
             wishIndex = (wishIndex + 1) % WISHES.length;
             createConfettiBurst(window.innerWidth / 2, window.innerHeight / 2, 50);
         }
+    function makeAWish() {
+    const text = document.createElement('div');
+    text.innerHTML = WISHES[wishIndex];
+    text.style.position = "fixed";
+    text.style.left = "50%";
+    text.style.top = "50%";
+    text.style.transform = "translate(-50%, -50%)";
+    text.style.fontSize = "24px";
+    text.style.color = "#FF69B4";
+    text.style.opacity = "1";
+    text.style.transition = "all 1.5s ease-out";
+    text.style.zIndex = "99999";
+    document.body.appendChild(text);
+
+    setTimeout(() => {
+        text.style.top = "20%";
+        text.style.opacity = "0";
+    }, 50);
+
+    setTimeout(() => text.remove(), 1600);
+
+    wishIndex = (wishIndex + 1) % WISHES.length;
+    createConfettiBurst(window.innerWidth / 2, window.innerHeight / 2, 50);
+}
 
         // Confetti
         function createConfettiBurst(x, y, count) {
@@ -1067,3 +1091,4 @@
 </body>
 
 </html>
+
